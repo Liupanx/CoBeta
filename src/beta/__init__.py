@@ -2,7 +2,7 @@ import cv2
 from pathlib import Path
 from typing import Optional, Callable, Union, List, Dict, Tuple
 import mediapipe as mp
-from pose_helper import get_track_point_coords
+from .utils.pose_helper import get_track_point_coords
 
 
 class Beta:
