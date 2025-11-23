@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 
 def draw_trajectory(frame, trajectories, color, thickness=2):
     "Function use to draw connected points into trajectory lines."
