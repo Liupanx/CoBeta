@@ -1,0 +1,7 @@
+src/beta/__pycache__
+src/beta/utils/__pycache__
+
+.venv
+.DS_Store
+test.png
+example.mp4
