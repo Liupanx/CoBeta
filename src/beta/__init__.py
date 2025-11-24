@@ -2,8 +2,8 @@ import cv2
 from pathlib import Path
 from typing import Optional, Callable, Union, List, Dict, Tuple
 import mediapipe as mp
-from .utils.pose_helper import get_track_point_coords
-
+from utils.pose_helper import get_track_point_coords
+from utils.draw_helper import draw_trajectory, draw_velocity_arrow
 
 class Beta:
     """Video helper with MediaPipe pose analysis built in.
@@ -134,17 +134,14 @@ class Beta:
                                 # Draw the track point
                                 cv2.circle(frame, mid_point, 8, color, -1)  # Filled circle
                                 
-                                # Draw the trajectory path
+                                # Draw the trajectory path using draw_helper
                                 trajectory = self.trajectories[track_point]
                                 if len(trajectory) > 1:
-                                    for i in range(1, len(trajectory)):
-                                        cv2.line(
-                                            frame,
-                                            trajectory[i-1],
-                                            trajectory[i],
-                                            color,
-                                            2  # Line thickness
-                                        )
+                                    draw_trajectory(frame, trajectory, color, thickness=2)
+                                    
+                                    # Optionally draw velocity arrow (shows direction of movement)
+                                    # Uncomment the next line if you want velocity arrows
+                                    # draw_velocity_arrow(frame, trajectory[-2], trajectory[-1], color, scale=5, thickness=3)
                                 
 
                     # callback for downstream processing (e.g., logging or ML)
