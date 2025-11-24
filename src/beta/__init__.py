@@ -4,6 +4,8 @@ from typing import Optional, Callable, Union, List, Dict, Tuple
 import mediapipe as mp
 from utils.pose_helper import get_track_point_coords
 from utils.draw_helper import draw_trajectory, draw_velocity_arrow
+from utils.smooth_filter import smooth_point
+
 
 class Beta:
     """Video helper with MediaPipe pose analysis built in.
@@ -32,6 +34,13 @@ class Beta:
         
         # Store which points we want to track
         self.track_points = track_points
+
+        # for testing smoothing
+        # Store last smoothed point for each body part
+        self.smoothed_points: Dict[str, Optional[Tuple[int, int]]] = {
+            point: None for point in track_points
+        }
+
         
         # Initialize trajectory storage: dictionary where each key is a body part
         # and value is a list of (x, y) coordinates over time
@@ -50,6 +59,8 @@ class Beta:
             "left_foot": (0, 255, 0),        # Green
             "right_foot": (0, 128, 255),     # Orange
         }
+
+
 
     def load_video(
         self,
@@ -93,6 +104,9 @@ class Beta:
             try:
                 while cap.isOpened():
                     ret, frame = cap.read()
+                    # TODO: check the video ratio and determin rotate or not.
+                    # frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+
                     if not ret:
                         # end of stream or read error
                         break
@@ -121,27 +135,51 @@ class Beta:
                                 frame_width,
                                 frame_height
                             )
-                            
                             if result is not None:
                                 mid_point, _mid_point_3d = result
-                                
-                                # Add this point to our trajectory
-                                self.trajectories[track_point].append(mid_point)
-                                
-                                # Get color for this track point (default to white if not found)
+
+                                # 1) get previous smoothed point for this track_point
+                                prev_smoothed = self.smoothed_points.get(track_point)
+
+                                # 2) compute new smoothed point
+                                # alpha parameter, the smaller the smoother but slower.
+                                smoothed_point = smooth_point(prev_smoothed, mid_point, 0.3)
+
+                                # 3) store it back so next frame can use it
+                                self.smoothed_points[track_point] = smoothed_point
+
+                                # 4) use the smoothed point for trajectory
+                                self.trajectories[track_point].append(smoothed_point)
+
                                 color = self.track_point_colors.get(track_point, (255, 255, 255))
-                                
-                                # Draw the track point
-                                cv2.circle(frame, mid_point, 8, color, -1)  # Filled circle
-                                
-                                # Draw the trajectory path using draw_helper
+
+                                # Draw the smoothed point
+                                cv2.circle(frame, smoothed_point, 8, color, -1)
+
+                                # Draw trajectory (optionally only recent history)
                                 trajectory = self.trajectories[track_point]
                                 if len(trajectory) > 1:
                                     draw_trajectory(frame, trajectory, color, thickness=2)
+                            
+                            # if result is not None:
+                            #     mid_point, _mid_point_3d = result
+                                
+                            #     # Add this point to our trajectory
+                            #     self.trajectories[track_point].append(mid_point)
+                                
+                            #     # Get color for this track point (default to white if not found)
+                            #     color = self.track_point_colors.get(track_point, (255, 255, 255))
+                                
+                            #     # Draw the track point
+                            #     cv2.circle(frame, mid_point, 8, color, -1)  # Filled circle
+                                
+                            #     # Draw the trajectory path using draw_helper
+                            #     trajectory = self.trajectories[track_point]
+                            #     if len(trajectory) > 1:
+                            #         draw_trajectory(frame, trajectory, color, thickness=2)
                                     
-                                    # Optionally draw velocity arrow (shows direction of movement)
-                                    # Uncomment the next line if you want velocity arrows
-                                    # draw_velocity_arrow(frame, trajectory[-2], trajectory[-1], color, scale=5, thickness=3)
+                            #         # (optional) draw velocity arrow (shows direction of movement)
+                            #         # draw_velocity_arrow(frame, trajectory[-2], trajectory[-1], color, scale=3, thickness=3)
                                 
 
                     # callback for downstream processing (e.g., logging or ML)
