@@ -30,7 +30,7 @@ def get_track_point_coords(tp, landmarks, frame_width, frame_height, confidence_
             (left_hip.y + right_hip.y) / 2,
             (left_hip.z + right_hip.z) / 2
         )
-    elif tp == "upper_body_center":
+    elif tp == "upper_body_center": # we use this as center of mass.
         if (
             left_hip.visibility < confidence_threshold
             or right_hip.visibility < confidence_threshold
