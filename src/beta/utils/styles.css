@@ -1,0 +1,381 @@
+/* Custom CSS for black/blue high-tech theme */
+/* Global black background - more specific selectors */
+body {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+.gradio-container {
+    background: #000000 !important;
+}
+
+/* Main app container */
+.main, #root, .container {
+    background: #0a0a0a !important;
+}
+
+/* All blocks and panels - no borders */
+.block, .panel, .form, .output-markdown, .input-markdown {
+    background: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+}
+
+/* Text - ensure all text is white, but exclude dropdowns */
+.markdown, p, h1, h2, h3, h4, h5, h6, .markdown p, .markdown h1, .markdown h2, .markdown h3 {
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* Exclude dropdowns from white text rule */
+.markdown select, .markdown .dropdown,
+p select, p .dropdown,
+.block select, .block .dropdown {
+    color: #888888 !important;
+}
+
+/* Labels should be grey */
+label {
+    color: #888888 !important;
+    border: none !important;
+}
+
+/* Specifically target the header title - more aggressive selectors */
+.header h1, h1, .markdown h1, div h1, .block h1, * h1 {
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* Target all markdown content including headers and all nested elements */
+.markdown *, .markdown h1 *, .markdown h2 *, .markdown h3 *, .markdown p *, .markdown strong, .markdown b {
+    color: #ffffff !important;
+}
+
+/* Target italic text in subtitle */
+.markdown em, .markdown i, em, i {
+    color: #ffffff !important;
+}
+
+/* Ensure all text within markdown blocks is white */
+.markdown strong, .markdown b, strong, b {
+    color: #ffffff !important;
+}
+
+/* Blue themed analyze button - more specific selectors */
+button.primary, button[class*="primary"] {
+    background: linear-gradient(135deg, #0066ff 0%, #0044cc 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4) !important;
+    transition: all 0.3s ease !important;
+    padding: 12px 24px !important;
+}
+
+button.primary:hover, button[class*="primary"]:hover {
+    background: linear-gradient(135deg, #0088ff 0%, #0066ff 100%) !important;
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.6) !important;
+    transform: translateY(-2px) !important;
+    border: none !important;
+}
+
+/* Input fields - minimal borders */
+input[type="text"], textarea {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* Dropdown/select fields - grey text for less prominence */
+select, .dropdown select {
+    background: #1a1a1a !important;
+    color: #888888 !important;
+    border: none !important;
+}
+
+/* Dropdown hover state - color changes on hover */
+select:hover, .dropdown select:hover,
+.dropdown:hover, [class*="dropdown"]:hover {
+    color: #aaaaaa !important;
+    background: #1a1a1a !important;
+}
+
+input[type="text"]:focus, textarea:focus {
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.3) !important;
+    outline: none !important;
+    border: none !important;
+}
+
+/* Dropdown focus state - color changes when focused/opened */
+select:focus, .dropdown select:focus,
+select:active, .dropdown select:active,
+.dropdown:focus, [class*="dropdown"]:focus {
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.3) !important;
+    outline: none !important;
+    border: none !important;
+    color: #aaaaaa !important;
+    background: #1a1a1a !important;
+}
+
+/* Tabs */
+.tabs, .tab-nav {
+    background: #0a0a0a !important;
+    border: none !important;
+}
+
+.tab-nav button, .tabs button {
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.tab-nav button.selected, .tabs button.selected {
+    color: #00aaff !important;
+    border-bottom: 2px solid #00aaff !important;
+    background: transparent !important;
+}
+
+/* Video components - no borders */
+.video-container, .video-wrapper {
+    background: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+/* Status textbox */
+textarea[readonly] {
+    background: #1a1a1a !important;
+    border: 1px solid #333333 !important;
+    color: #00ff88 !important;
+}
+
+/* Dropdowns - grey text for less prominence - more specific selectors for Gradio */
+.dropdown, .dropdown select, .dropdown option,
+[class*="dropdown"], [class*="select"],
+select, select option, option {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    border: 1px solid #333333 !important;
+    color: #888888 !important;
+}
+
+/* Dropdown options background - ensure dark background */
+option {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #888888 !important;
+}
+
+option:hover, option:focus {
+    background: #2a2a2a !important;
+    background-color: #2a2a2a !important;
+    color: #aaaaaa !important;
+}
+
+/* Target Gradio's specific dropdown structure */
+.form select, .block select, .wrap select,
+.form .dropdown, .block .dropdown {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #888888 !important;
+}
+
+/* Dropdown hover and focus states */
+.dropdown:hover, .dropdown select:hover,
+.form select:hover, .block select:hover,
+select:hover {
+    color: #aaaaaa !important;
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+}
+
+.dropdown:focus, .dropdown select:focus, select:focus,
+.form select:focus, .block select:focus {
+    color: #aaaaaa !important;
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+}
+
+/* Ensure dropdown text is grey - target all possible text elements */
+.dropdown *, select *, option *,
+.dropdown span, .dropdown div, .dropdown p,
+select span, select div, select p,
+[class*="dropdown"] span, [class*="dropdown"] div,
+[class*="select"] span, [class*="select"] div {
+    color: #888888 !important;
+}
+
+/* Target the selected value display in Gradio dropdowns */
+.gr-dropdown, [class*="gr-dropdown"],
+[data-testid*="dropdown"] {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #888888 !important;
+}
+
+.gr-dropdown *, [class*="gr-dropdown"] *,
+[data-testid*="dropdown"] * {
+    color: #888888 !important;
+}
+
+/* Gradio dropdown hover and focus */
+.gr-dropdown:hover, [class*="gr-dropdown"]:hover,
+[data-testid*="dropdown"]:hover {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #aaaaaa !important;
+}
+
+.gr-dropdown:focus, [class*="gr-dropdown"]:focus,
+[data-testid*="dropdown"]:focus {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #aaaaaa !important;
+}
+
+/* Override any white text that might be set elsewhere */
+.block .dropdown, .form .dropdown,
+.block select, .form select {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #888888 !important;
+}
+
+.block .dropdown *, .form .dropdown *,
+.block select *, .form select * {
+    color: #888888 !important;
+}
+
+/* Ensure dropdown container/wrapper has dark background */
+.dropdown-wrapper, .select-wrapper,
+[class*="dropdown"] > div, [class*="select"] > div {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+}
+
+/* Force dark background on all dropdown-related elements */
+*[class*="dropdown"], *[class*="select"] {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+}
+
+/* Accordion - no borders */
+.accordion {
+    background: #1a1a1a !important;
+    border: none !important;
+}
+
+/* All buttons */
+button {
+    border-radius: 6px !important;
+}
+
+/* CheckboxGroup buttons - styled as toggle buttons */
+.checkbox-group, .gr-checkbox-group {
+    background: #1a1a1a !important;
+}
+
+/* Unselected checkboxes - dark background (swapped from previous) */
+.checkbox-group label, .gr-checkbox-group label,
+[class*="checkbox"] label {
+    color: #888888 !important;
+    background: #1a1a1a !important;
+    border: 1px solid #333333 !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    margin: 4px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.checkbox-group label:hover, .gr-checkbox-group label:hover,
+[class*="checkbox"] label:hover {
+    background: #2a2a2a !important;
+    border-color: #0066ff !important;
+    color: #aaaaaa !important;
+}
+
+/* Selected checkboxes - bright colors matching trajectory colors */
+.checkbox-group input:checked + label,
+.gr-checkbox-group input:checked + label,
+[class*="checkbox"] input:checked + label {
+    background: #00FFFF !important; /* Cyan - matches upper_body_center trajectory */
+    border-color: #00FFFF !important;
+    color: #000000 !important; /* Black text for contrast on bright background */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
+    font-weight: 600 !important;
+}
+
+/* Specific colors for each track point option (using nth-child) */
+/* Hip Mid - Yellow */
+.checkbox-group input[value="hip_mid"]:checked + label,
+.gr-checkbox-group input[value="hip_mid"]:checked + label {
+    background: #FFFF00 !important; /* Yellow */
+    border-color: #FFFF00 !important;
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.6) !important;
+}
+
+/* Upper Body Center - Cyan */
+.checkbox-group input[value="upper_body_center"]:checked + label,
+.gr-checkbox-group input[value="upper_body_center"]:checked + label {
+    background: #00FFFF !important; /* Cyan */
+    border-color: #00FFFF !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
+}
+
+/* Head - Magenta */
+.checkbox-group input[value="head"]:checked + label,
+.gr-checkbox-group input[value="head"]:checked + label {
+    background: #FF00FF !important; /* Magenta */
+    border-color: #FF00FF !important;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6) !important;
+}
+
+/* Left Hand - Blue */
+.checkbox-group input[value="left_hand"]:checked + label,
+.gr-checkbox-group input[value="left_hand"]:checked + label {
+    background: #0000FF !important; /* Blue */
+    border-color: #0000FF !important;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.6) !important;
+    color: #ffffff !important; /* White text for blue background */
+}
+
+/* Right Hand - Red */
+.checkbox-group input[value="right_hand"]:checked + label,
+.gr-checkbox-group input[value="right_hand"]:checked + label {
+    background: #FF0000 !important; /* Red */
+    border-color: #FF0000 !important;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6) !important;
+}
+
+/* Left Foot - Green */
+.checkbox-group input[value="left_foot"]:checked + label,
+.gr-checkbox-group input[value="left_foot"]:checked + label {
+    background: #00FF00 !important; /* Green */
+    border-color: #00FF00 !important;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6) !important;
+}
+
+/* Right Foot - Orange (changed from default orange to match theme) */
+.checkbox-group input[value="right_foot"]:checked + label,
+.gr-checkbox-group input[value="right_foot"]:checked + label {
+    background: #FF8000 !important; /* Orange */
+    border-color: #FF8000 !important;
+    box-shadow: 0 0 15px rgba(255, 128, 0, 0.6) !important;
+}
+
+/* Fix orange checkbox selection color - override Gradio's default orange */
+input[type="checkbox"]:checked {
+    accent-color: #00FFFF !important; /* Use theme cyan instead of orange */
+}
+
+/* Also target Gradio's checkbox styling */
+.gr-checkbox input[type="checkbox"]:checked,
+[class*="checkbox"] input[type="checkbox"]:checked {
+    accent-color: #00FFFF !important;
+    background-color: #00FFFF !important;
+}
+
